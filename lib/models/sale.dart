@@ -45,10 +45,15 @@ class SaleLine {
 }
 
 class SaleCustomer {
-  const SaleCustomer({required this.name, required this.phone});
+  const SaleCustomer({
+    required this.name,
+    required this.phone,
+    this.whatsapp,
+  });
 
   final String name;
   final String phone;
+  final String? whatsapp;
 }
 
 class Sale {

@@ -1,10 +1,13 @@
+import 'package:afyra/data/mock/customer_catalog.dart';
 import 'package:afyra/models/sale.dart';
 
-const saleCustomers = <SaleCustomer>[
-  SaleCustomer(name: 'Camila Rojas', phone: '+56 9 1111 2201'),
-  SaleCustomer(name: 'Javiera Soto', phone: '+56 9 1111 2202'),
-  SaleCustomer(name: 'Fernanda Muñoz', phone: '+56 9 1111 2203'),
-  SaleCustomer(name: 'Valentina Pérez', phone: '+56 9 1111 2204'),
+List<SaleCustomer> get saleCustomers => [
+  for (final customer in customerCatalog.customers)
+    SaleCustomer(
+      name: customer.name,
+      phone: customer.phone,
+      whatsapp: customer.whatsapp,
+    ),
 ];
 
 const todaySalesIncome = 245000;

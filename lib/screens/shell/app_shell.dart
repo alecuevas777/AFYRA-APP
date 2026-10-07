@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:afyra/screens/dashboard/dashboard_screen.dart';
+import 'package:afyra/screens/live/live_home_screen.dart';
 import 'package:afyra/screens/more/more_screen.dart';
-import 'package:afyra/screens/placeholder/placeholder_screen.dart';
 import 'package:afyra/screens/products/product_form_screen.dart';
 import 'package:afyra/screens/products/products_screen.dart';
 import 'package:afyra/screens/purchases/purchases_screen.dart';
@@ -41,13 +41,23 @@ class _AppShellState extends State<AppShell> {
       return;
     }
 
-    final text = label == 'LIVE'
-        ? 'El modo LIVE se construye en una etapa posterior.'
-        : '$label estará disponible en una próxima etapa.';
+    if (label == 'LIVE') {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => Scaffold(
+            appBar: AppBar(title: const Text('LIVE')),
+            body: const SafeArea(top: false, child: LiveHomeScreen()),
+          ),
+        ),
+      );
+      return;
+    }
 
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(text)));
+      ..showSnackBar(
+        SnackBar(content: Text('$label estará disponible en una próxima etapa.')),
+      );
   }
 
   @override
@@ -56,10 +66,7 @@ class _AppShellState extends State<AppShell> {
       DashboardScreen(onAction: _onAction),
       const ProductsScreen(),
       const SalesScreen(),
-      const PlaceholderScreen(
-        title: 'LIVE',
-        message: 'El modo LIVE se construye en la etapa 5.',
-      ),
+      const LiveHomeScreen(),
       const MoreScreen(),
     ];
 

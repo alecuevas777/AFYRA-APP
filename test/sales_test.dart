@@ -100,9 +100,11 @@ void main() {
       await tester.ensureVisible(finder);
     }
 
-    final customer = find.text('Camila Rojas');
-    await reveal(customer);
-    await tester.tap(customer);
+    final select = find.text('Seleccionar');
+    await reveal(select);
+    await tester.tap(select);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Camila Rojas').hitTestable());
     await tester.pumpAndSettle();
     final cash = find.text('Efectivo');
     await reveal(cash);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:afyra/core/theme/app_colors.dart';
 import 'package:afyra/core/theme/app_spacing.dart';
+import 'package:afyra/screens/customers/customers_screen.dart';
 import 'package:afyra/screens/purchases/materials_screen.dart';
 import 'package:afyra/screens/purchases/purchases_screen.dart';
 import 'package:afyra/screens/purchases/real_cost_screen.dart';
@@ -24,10 +25,21 @@ class MoreScreen extends StatelessWidget {
         Text('Más', style: textTheme.titleLarge),
         const SizedBox(height: AppSpacing.xs),
         Text(
-          'Compras y costos de la tienda.',
+          'Personas, compras y costos de la tienda.',
           style: textTheme.bodySmall,
         ),
         const SizedBox(height: AppSpacing.lg),
+        _Entry(
+          icon: Icons.person_outline,
+          title: 'Clientes',
+          subtitle: 'Compras, contacto y frecuencia',
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const CustomersScreen()),
+            );
+          },
+        ),
+        const SizedBox(height: AppSpacing.sm),
         _Entry(
           icon: Icons.local_mall_outlined,
           title: 'Compras',
@@ -62,7 +74,7 @@ class MoreScreen extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.xl),
         Text(
-          'Clientes y ajustes llegan en una etapa posterior.',
+          'Ajustes llegan en una etapa posterior.',
           style: textTheme.bodySmall,
         ),
       ],

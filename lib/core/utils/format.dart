@@ -73,3 +73,20 @@ String shortTime(DateTime date) {
   final minute = date.minute.toString().padLeft(2, '0');
   return '$hour:$minute';
 }
+
+String relativeDay(DateTime date, [DateTime? now]) {
+  final clock = now ?? DateTime.now();
+  final start = DateTime(date.year, date.month, date.day);
+  final today = DateTime(clock.year, clock.month, clock.day);
+  final days = today.difference(start).inDays;
+  if (days <= 0) return 'Hoy';
+  if (days == 1) return 'Hace 1 día';
+  return 'Hace $days días';
+}
+
+String formatDuration(Duration duration) {
+  final hours = duration.inHours.toString().padLeft(2, '0');
+  final minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
+  final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
+  return '$hours:$minutes:$seconds';
+}

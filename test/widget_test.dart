@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:afyra/core/app.dart';
 import 'package:afyra/core/utils/format.dart';
 import 'package:afyra/data/mock/dashboard_mock.dart';
+import 'package:afyra/data/mock/live_catalog.dart';
 
 void main() {
   test('formatea pesos chilenos', () {
@@ -49,20 +50,19 @@ void main() {
     expect(find.text('Polera Oversize Negra'), findsOneWidget);
   });
 
-  testWidgets('una acción rápida avisa que aún no está disponible', (tester) async {
+  testWidgets('el botón LIVE abre el panel activo', (tester) async {
     tester.view.physicalSize = const Size(360, 800);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    liveCatalog.reset();
 
     await tester.pumpWidget(const AfyraApp());
     await tester.pumpAndSettle();
     await tester.tap(find.text('Iniciar LIVE'));
     await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
 
-    expect(
-      find.text('El modo LIVE se construye en una etapa posterior.'),
-      findsOneWidget,
-    );
+    expect(find.text('Nuevo Drop'), findsOneWidget);
   });
 }

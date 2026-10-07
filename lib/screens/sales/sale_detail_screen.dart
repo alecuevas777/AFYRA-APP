@@ -4,6 +4,7 @@ import 'package:afyra/core/theme/app_colors.dart';
 import 'package:afyra/core/theme/app_spacing.dart';
 import 'package:afyra/core/utils/format.dart';
 import 'package:afyra/data/mock/sale_catalog.dart';
+import 'package:afyra/models/sale.dart';
 import 'package:afyra/widgets/sale_item_tile.dart';
 import 'package:afyra/widgets/sale_status_badge.dart';
 import 'package:afyra/widgets/sale_summary.dart';
@@ -11,12 +12,17 @@ import 'package:afyra/widgets/section_title.dart';
 import 'package:afyra/widgets/status_views.dart';
 
 class SaleDetailScreen extends StatelessWidget {
-  const SaleDetailScreen({super.key, required this.saleId});
+  const SaleDetailScreen({super.key, required this.saleId}) : preview = null;
+
+  const SaleDetailScreen.preview({super.key, required this.preview}) : saleId = '';
 
   final String saleId;
+  final Sale? preview;
 
   @override
   Widget build(BuildContext context) {
+    if (preview != null) return _SaleBody(sale: preview!);
+
     return ListenableBuilder(
       listenable: saleCatalog,
       builder: (context, _) {
@@ -30,9 +36,22 @@ class SaleDetailScreen extends StatelessWidget {
           );
         }
 
-        final textTheme = Theme.of(context).textTheme;
+        return _SaleBody(sale: sale);
+      },
+    );
+  }
+}
 
-        return Scaffold(
+class _SaleBody extends StatelessWidget {
+  const _SaleBody({required this.sale});
+
+  final Sale sale;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Scaffold(
           appBar: AppBar(title: Text('Venta ${sale.numberLabel}')),
           body: SafeArea(
             top: false,
@@ -89,8 +108,6 @@ class SaleDetailScreen extends StatelessWidget {
               ],
             ),
           ),
-        );
-      },
     );
   }
 }

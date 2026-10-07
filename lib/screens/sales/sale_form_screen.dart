@@ -228,10 +228,24 @@ class _SaleFormScreenState extends State<SaleFormScreen> {
             onPercent: (value) => setState(() => _percent = value),
           ),
           const SectionTitle('Cliente'),
-          CustomerSelector(
-            customers: saleCustomers,
-            selectedName: _customer?.name,
-            onSelected: (customer) => setState(() => _customer = customer),
+          Text(
+            _customer?.name ?? 'Sin cliente',
+            style: textTheme.bodyLarge,
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: OutlinedButton(
+              onPressed: () async {
+                final choice = await showCustomerPicker(
+                  context,
+                  selectedName: _customer?.name,
+                );
+                if (choice == null || !mounted) return;
+                setState(() => _customer = choice.customer);
+              },
+              child: const Text('Seleccionar'),
+            ),
           ),
           const SectionTitle('Pago'),
           PaymentMethodSelector(
