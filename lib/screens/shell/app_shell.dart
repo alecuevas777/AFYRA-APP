@@ -6,6 +6,8 @@ import 'package:afyra/screens/placeholder/placeholder_screen.dart';
 import 'package:afyra/screens/products/product_form_screen.dart';
 import 'package:afyra/screens/products/products_screen.dart';
 import 'package:afyra/screens/purchases/purchases_screen.dart';
+import 'package:afyra/screens/sales/sale_form_screen.dart';
+import 'package:afyra/screens/sales/sales_screen.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -32,6 +34,13 @@ class _AppShellState extends State<AppShell> {
       return;
     }
 
+    if (label == 'Venta') {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (_) => const SaleFormScreen()),
+      );
+      return;
+    }
+
     final text = label == 'LIVE'
         ? 'El modo LIVE se construye en una etapa posterior.'
         : '$label estará disponible en una próxima etapa.';
@@ -46,10 +55,7 @@ class _AppShellState extends State<AppShell> {
     final pages = <Widget>[
       DashboardScreen(onAction: _onAction),
       const ProductsScreen(),
-      const PlaceholderScreen(
-        title: 'Ventas',
-        message: 'El registro de ventas se construye en la etapa 4.',
-      ),
+      const SalesScreen(),
       const PlaceholderScreen(
         title: 'LIVE',
         message: 'El modo LIVE se construye en la etapa 5.',
