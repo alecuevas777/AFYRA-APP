@@ -4,6 +4,7 @@ import 'package:afyra/core/theme/app_colors.dart';
 import 'package:afyra/core/theme/app_spacing.dart';
 import 'package:afyra/screens/customers/customers_screen.dart';
 import 'package:afyra/screens/history/history_screen.dart';
+import 'package:afyra/screens/reports/reports_screen.dart';
 import 'package:afyra/screens/purchases/materials_screen.dart';
 import 'package:afyra/screens/purchases/purchases_screen.dart';
 import 'package:afyra/screens/purchases/real_cost_screen.dart';
@@ -37,6 +38,17 @@ class MoreScreen extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute<void>(builder: (_) => const HistoryScreen()),
+            );
+          },
+        ),
+        const SizedBox(height: AppSpacing.sm),
+        _Entry(
+          icon: Icons.insights_outlined,
+          title: 'Reportes',
+          subtitle: 'Ventas, márgenes y LIVE',
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const ReportsScreen()),
             );
           },
         ),

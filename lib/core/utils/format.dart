@@ -90,3 +90,23 @@ String formatDuration(Duration duration) {
   final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
   return '$hours:$minutes:$seconds';
 }
+
+/// Variación con coma decimal: +18,4% o -7,2%.
+String formatPercent(double value) {
+  final rounded = (value * 10).round() / 10;
+  if (rounded == 0) return '0,0%';
+  final digits = rounded.abs().toStringAsFixed(1).replaceAll('.', ',');
+  return '${rounded > 0 ? '+' : '-'}$digits%';
+}
+
+String formatClpCompact(int amount) {
+  final negative = amount < 0;
+  final abs = amount.abs();
+  final prefix = negative ? '-' : '';
+  if (abs >= 1000000) {
+    final millions = (abs / 100000).round() / 10;
+    return '$prefix\$${millions.toStringAsFixed(1).replaceAll('.', ',')} M';
+  }
+  if (abs >= 1000) return '$prefix\$${(abs / 1000).round()} mil';
+  return formatClp(amount);
+}
