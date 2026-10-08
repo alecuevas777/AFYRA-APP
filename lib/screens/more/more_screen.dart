@@ -8,6 +8,7 @@ import 'package:afyra/screens/reports/reports_screen.dart';
 import 'package:afyra/screens/purchases/materials_screen.dart';
 import 'package:afyra/screens/purchases/purchases_screen.dart';
 import 'package:afyra/screens/purchases/real_cost_screen.dart';
+import 'package:afyra/screens/settings/settings_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -32,7 +33,7 @@ class MoreScreen extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.lg),
         _Entry(
-          icon: Icons.history,
+          icon: Icons.history_outlined,
           title: 'Historial',
           subtitle: 'Ventas, compras, stock y LIVE',
           onTap: () {
@@ -96,10 +97,16 @@ class MoreScreen extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: AppSpacing.xl),
-        Text(
-          'Ajustes llegan en una etapa posterior.',
-          style: textTheme.bodySmall,
+        const SizedBox(height: AppSpacing.sm),
+        _Entry(
+          icon: Icons.settings_outlined,
+          title: 'Configuración',
+          subtitle: 'Negocio, avisos y apariencia',
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const SettingsScreen()),
+            );
+          },
         ),
       ],
     );
