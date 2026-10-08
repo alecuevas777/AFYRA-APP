@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:afyra/core/theme/app_colors.dart';
 import 'package:afyra/core/theme/app_spacing.dart';
 import 'package:afyra/screens/customers/customers_screen.dart';
+import 'package:afyra/screens/history/history_screen.dart';
 import 'package:afyra/screens/purchases/materials_screen.dart';
 import 'package:afyra/screens/purchases/purchases_screen.dart';
 import 'package:afyra/screens/purchases/real_cost_screen.dart';
@@ -25,10 +26,21 @@ class MoreScreen extends StatelessWidget {
         Text('Más', style: textTheme.titleLarge),
         const SizedBox(height: AppSpacing.xs),
         Text(
-          'Personas, compras y costos de la tienda.',
+          'Actividad, personas y costos de la tienda.',
           style: textTheme.bodySmall,
         ),
         const SizedBox(height: AppSpacing.lg),
+        _Entry(
+          icon: Icons.history,
+          title: 'Historial',
+          subtitle: 'Ventas, compras, stock y LIVE',
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const HistoryScreen()),
+            );
+          },
+        ),
+        const SizedBox(height: AppSpacing.sm),
         _Entry(
           icon: Icons.person_outline,
           title: 'Clientes',

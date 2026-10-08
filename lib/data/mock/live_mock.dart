@@ -158,6 +158,50 @@ List<LiveSession> buildPastLives() {
         ),
       ],
     ),
+    _pastLive(
+      id: 'primavera',
+      name: 'Especial primavera',
+      startedAt: DateTime(2026, 9, 26, 19),
+      length: const Duration(hours: 1, minutes: 12),
+      sales: 21,
+      units: 27,
+      income: 312000,
+      cost: 198000,
+      salesList: [
+        LiveSaleRecord(
+          at: DateTime(2026, 9, 26, 19, 25),
+          customerName: 'Sofía Contreras',
+          productName: 'Polera Oversize Negra',
+          variantLabel: 'Negro / M',
+          quantity: 1,
+          unitPrice: 24990,
+          estimatedUnitCost: 11600,
+          payment: PaymentMethod.transfer,
+        ),
+      ],
+    ),
+    _pastLive(
+      id: 'boutique',
+      name: 'Live Boutique',
+      startedAt: DateTime(2026, 9, 19, 18),
+      length: const Duration(minutes: 46),
+      sales: 9,
+      units: 11,
+      income: 154000,
+      cost: 98000,
+      salesList: [
+        LiveSaleRecord(
+          at: DateTime(2026, 9, 19, 18, 20),
+          customerName: 'Martina Fuentes',
+          productName: 'Crop Top Basic',
+          variantLabel: 'Blanco / M',
+          quantity: 1,
+          unitPrice: 12990,
+          estimatedUnitCost: 6000,
+          payment: PaymentMethod.debit,
+        ),
+      ],
+    ),
   ];
 }
 
